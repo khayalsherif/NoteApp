@@ -1,22 +1,35 @@
 package az.khayalsharifli.noteapp.presentation.content.addNote
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import az.khayalsharifli.noteapp.R
+import az.khayalsharifli.noteapp.base.BaseFragment
+import az.khayalsharifli.noteapp.data.local.model.Note
+import az.khayalsharifli.noteapp.databinding.FragmentAddNoteBinding
+import kotlin.reflect.KClass
 
-class AddNoteFragment : Fragment() {
+class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, AddNoteViewModel>() {
 
+    override val bindingCallBack: (LayoutInflater, ViewGroup?, Boolean) -> FragmentAddNoteBinding
+        get() = FragmentAddNoteBinding::inflate
+    override val kClass: KClass<AddNoteViewModel>
+        get() = AddNoteViewModel::class
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_note, container, false)
+    override val bindViews: FragmentAddNoteBinding.() -> Unit = {
+        binding.button.setOnClickListener {
+            val header = textTitle.text.toString()
+            val body = textBody.text.toString()
+            if (header == "" || body == "") {
+                showToast(getString(R.string.complete_error_message))
+            } else {
+                viewModel.insertNote(Note(title = header, body = body))
+                showToast(getString(R.string.note_saved))
+            }
+        }
+        navBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
-
 
 }

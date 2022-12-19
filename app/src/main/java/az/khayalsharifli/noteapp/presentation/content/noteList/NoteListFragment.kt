@@ -1,22 +1,43 @@
 package az.khayalsharifli.noteapp.presentation.content.noteList
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import az.khayalsharifli.noteapp.R
+import az.khayalsharifli.noteapp.base.BaseFragment
+import az.khayalsharifli.noteapp.databinding.FragmentNoteListBinding
+import az.khayalsharifli.noteapp.presentation.adapter.NoteAdapter
+import kotlinx.coroutines.launch
+import kotlin.reflect.KClass
 
+class NoteListFragment : BaseFragment<FragmentNoteListBinding, NoteListViewModel>() {
 
-class NoteListFragment : Fragment() {
+    override val bindingCallBack: (LayoutInflater, ViewGroup?, Boolean) -> FragmentNoteListBinding
+        get() = FragmentNoteListBinding::inflate
+    override val kClass: KClass<NoteListViewModel>
+        get() = NoteListViewModel::class
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_note_list, container, false)
+    private val noteAdapter by lazy { NoteAdapter() }
+
+    override val bindViews: FragmentNoteListBinding.() -> Unit = {
+        integrationRcView()
+
+        binding.buttonAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_noteFragment_to_addNoteFragment)
+        }
+
+        lifecycleScope.launch {
+            viewModel.notes.collect {
+                noteAdapter.setData(it)
+            }
+        }
     }
 
+    private fun integrationRcView() {
+        binding.rcView.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcView.adapter = noteAdapter
+    }
 
 }

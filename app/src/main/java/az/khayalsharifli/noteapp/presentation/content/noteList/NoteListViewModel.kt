@@ -1,16 +1,15 @@
 package az.khayalsharifli.noteapp.presentation.content.noteList
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import az.khayalsharifli.noteapp.base.BaseViewModel
 import az.khayalsharifli.noteapp.data.local.model.Note
 import az.khayalsharifli.noteapp.domain.usecase.noteList.NoteListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class NoteListViewModel(val useCase: NoteListUseCase) : ViewModel() {
+class NoteListViewModel(private val useCase: NoteListUseCase) : BaseViewModel() {
 
     private var _notes = MutableStateFlow<List<Note>>(emptyList())
     val notes: StateFlow<List<Note>>
