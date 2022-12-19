@@ -12,8 +12,8 @@ class LocalDataSourceImpl(private val dao: NoteDao) : LocalDataSource {
         dao.insertNote(note)
     }
 
-    override suspend fun deleteNote() {
-        dao.clearNote()
+    override suspend fun deleteNote(id: Int) {
+        dao.clearNote(id)
     }
 
     override suspend fun deleteAllNote() {

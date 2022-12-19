@@ -18,6 +18,6 @@ interface NoteDao {
     @Query("DELETE FROM note")
     fun clearAllNote()
 
-    @Query("DELETE FROM note")
-    fun clearNote()
+    @Query("DELETE FROM note WHERE id=:id")
+    fun clearNote(id: Int)
 }

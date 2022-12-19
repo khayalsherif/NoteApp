@@ -10,9 +10,9 @@ class NoteListUseCase(
     private val repository: NoteListRepository,
     private val context: CoroutineContext
 ) {
-    suspend fun deleteNote() {
+    suspend fun deleteNote(id: Int) {
         withContext(context = context) {
-            repository.deleteNote()
+            repository.deleteNote(id)
         }
     }
 

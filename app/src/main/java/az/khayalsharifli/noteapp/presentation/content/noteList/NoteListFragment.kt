@@ -9,6 +9,8 @@ import az.khayalsharifli.noteapp.R
 import az.khayalsharifli.noteapp.base.BaseFragment
 import az.khayalsharifli.noteapp.databinding.FragmentNoteListBinding
 import az.khayalsharifli.noteapp.presentation.adapter.NoteAdapter
+import az.khayalsharifli.noteapp.tools.gone
+import az.khayalsharifli.noteapp.tools.visible
 import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
@@ -30,7 +32,12 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding, NoteListViewModel
 
         lifecycleScope.launch {
             viewModel.notes.collect {
-                noteAdapter.setData(it)
+                if (it.isEmpty()) {
+                    layoutEmptyFolder.visible()
+                } else {
+                    layoutEmptyFolder.gone()
+                    noteAdapter.setData(it)
+                }
             }
         }
     }

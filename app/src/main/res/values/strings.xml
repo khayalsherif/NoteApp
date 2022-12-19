@@ -6,5 +6,6 @@
     <string name="title">Title</string>
     <string name="body">Body</string>
     <string name="save">Save</string>
+    <string name="empty_folder">Empty folder</string>
 
 </resources>

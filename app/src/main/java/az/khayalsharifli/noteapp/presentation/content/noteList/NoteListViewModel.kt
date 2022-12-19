@@ -30,7 +30,7 @@ class NoteListViewModel(private val useCase: NoteListUseCase) : BaseViewModel() 
         useCase.deleteAllNote()
     }
 
-    fun deleteNote() = viewModelScope.launch {
-        useCase.deleteNote()
+    fun deleteNote(id: Int) = viewModelScope.launch {
+        useCase.deleteNote(id)
     }
 }

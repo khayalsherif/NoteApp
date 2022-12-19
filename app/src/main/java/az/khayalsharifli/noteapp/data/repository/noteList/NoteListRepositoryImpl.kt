@@ -9,11 +9,11 @@ class NoteListRepositoryImpl(private val dataSource: LocalDataSource) : NoteList
         return dataSource.observeNoteList()
     }
 
-    override suspend fun deleteNote() {
-        dataSource.deleteNote()
+    override suspend fun deleteNote(id: Int) {
+        dataSource.deleteNote(id)
     }
 
     override suspend fun deleteAllNote() {
-        dataSource.deleteNote()
+        dataSource.deleteAllNote()
     }
 }

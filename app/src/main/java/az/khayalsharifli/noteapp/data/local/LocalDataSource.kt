@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface LocalDataSource {
     fun observeNoteList(): Flow<List<Note>>
     suspend fun insertNote(note: Note)
-    suspend fun deleteNote()
+    suspend fun deleteNote(id: Int)
     suspend fun deleteAllNote()
 }
