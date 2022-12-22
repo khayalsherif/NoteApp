@@ -30,6 +30,10 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding, NoteListViewModel
             findNavController().navigate(R.id.action_noteFragment_to_addNoteFragment)
         }
 
+        binding.buttonRemoveAllNote.setOnClickListener {
+            viewModel.deleteAllNotes()
+        }
+
         lifecycleScope.launch {
             viewModel.notes.collect {
                 if (it.isEmpty()) {

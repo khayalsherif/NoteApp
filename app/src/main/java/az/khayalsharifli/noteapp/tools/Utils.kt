@@ -13,8 +13,3 @@ fun View.gone() {
 fun View.visible() {
     isVisible = true
 }
-
-fun View.inVisible() {
-    isInvisible = true
-}
-
