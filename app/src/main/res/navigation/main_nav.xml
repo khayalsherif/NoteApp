@@ -18,5 +18,15 @@
         android:id="@+id/addNoteFragment"
         android:name="az.khayalsharifli.noteapp.presentation.content.addNote.AddNoteFragment"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_add_note">
+        <argument
+            android:name="from"
+            android:defaultValue="ADD"
+            app:argType="az.khayalsharifli.noteapp.presentation.enum.From" />
+        <argument
+            android:name="note"
+            app:argType="az.khayalsharifli.noteapp.data.local.model.Note"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import az.khayalsharifli.noteapp.base.BaseDiffUtil
 import az.khayalsharifli.noteapp.data.local.model.Note
 import az.khayalsharifli.noteapp.databinding.ItemNoteBinding
+import az.khayalsharifli.noteapp.tools.ClickListener
 
-class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(val clickListener: ClickListener) :
+    RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var emptyList = emptyList<Note>()
 
@@ -29,6 +31,9 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.binding.textTitle.text = emptyList[position].title
         holder.binding.textBody.text = emptyList[position].body
+        holder.binding.root.setOnClickListener {
+            clickListener.onClick(it, position)
+        }
     }
 
     override fun getItemCount() = emptyList.size
