@@ -8,8 +8,9 @@ import az.khayalsharifli.noteapp.base.BaseDiffUtil
 import az.khayalsharifli.noteapp.data.local.model.Note
 import az.khayalsharifli.noteapp.databinding.ItemNoteBinding
 import az.khayalsharifli.noteapp.tools.ClickListener
+import az.khayalsharifli.noteapp.tools.SwipeListener
 
-class NoteAdapter(val clickListener: ClickListener) :
+class NoteAdapter(private val clickListener: ClickListener, val onSwipeListener: SwipeListener) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var emptyList = emptyList<Note>()
