@@ -48,6 +48,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, AddNoteViewModel>()
                 hideKeyboard()
                 viewModel.insertNote(Note(title = header, body = body))
                 showToast(getString(R.string.note_saved))
+                it.isEnabled = false
             }
         }
     }
