@@ -35,6 +35,9 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, AddNoteViewModel>()
     }
 
     private fun addNoteMode() {
+        // Get note id and print logcat
+        println(args.id)
+
         // Open keyboard and focus header text
         binding.textTitle.requestFocus()
         showKeyboard()

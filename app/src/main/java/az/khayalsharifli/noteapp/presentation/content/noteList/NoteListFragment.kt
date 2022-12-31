@@ -68,7 +68,8 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding, NoteListViewModel
         findNavController().navigate(
             NoteListFragmentDirections.actionNoteFragmentToAddNoteFragment(
                 from = From.DETAIL,
-                note = noteList[position]
+                note = noteList[position],
+                id = noteList[position].id
             )
         )
     }
